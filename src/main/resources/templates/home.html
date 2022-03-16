@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bertie</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bertie</h1>
+    <p th:text="${#session.getAttribute('authInfo').id}"></p>
+    <div class="button">
+        <a href="/logout">로그아웃</a>
+        <a href="/post/new">글쓰기</a>
+    </div>
+    <br>
+    <div class="posts">
+        <table>
+            <tr>
+                <th>#</th>
+                <th>제목</th>
+                <th>아이디</th>
+                <th>작성일자</th>
+            </tr>
+            <tr th:each="post : ${posts}">
+                <td><span th:text="${post.num}"></span></td>
+                <td><a th:href="${'/post/read/' + post.num}" th:text="${post.title}"></a></td>
+                <td><span th:text="${post.id}"></span></td>
+                <td><span th:text="${post.time}"></span></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

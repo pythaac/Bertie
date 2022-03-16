@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bertie</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            text-align: center;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="navigation">
+  <a href="/home">뒤로가기</a>
+</div>
+<div class="post">
+    <div class="title">
+        <h1 th:text="${post.title}"></h1>
+    </div>
+    <hr>
+    <div class="head">
+        <table>
+            <tr>
+                <th>아이디</th>
+                <th>작성일자</th>
+            </tr>
+            <tr>
+                <td><span th:text="${post.id}"></span></td>
+                <td><span th:text="${post.time}"></span></td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div class="content">
+        <p th:text="${post.content}"></p>
+    </div>
+</div>
+</body>
+</html>
