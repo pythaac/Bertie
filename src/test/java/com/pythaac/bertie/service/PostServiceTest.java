@@ -28,7 +28,7 @@ class PostServiceTest {
     @Test
     public void publishAndRead(){
         // given
-        RequestNewPost requestNewPost = new RequestNewPost("title", "content");
+        RequestNewPost requestNewPost = new RequestNewPost("title", "content", "");
         Post published = postService.publish(requestNewPost, "id");
 
         // when
@@ -41,7 +41,7 @@ class PostServiceTest {
     @Test
     public void readNotExists() {
         // given
-        RequestNewPost requestNewPost = new RequestNewPost("title", "content");
+        RequestNewPost requestNewPost = new RequestNewPost("title", "content", "");
         Post published = postService.publish(requestNewPost, "id");
 
         // when
@@ -54,7 +54,7 @@ class PostServiceTest {
     @Test
     public void publishEmptyTitle(){
         // given
-        RequestNewPost requestNewPost = new RequestNewPost("", "content");
+        RequestNewPost requestNewPost = new RequestNewPost("", "content", "");
 
         // when
         RuntimeException e = assertThrows(RuntimeException.class, () -> postService.publish(requestNewPost, "id"));
@@ -66,7 +66,7 @@ class PostServiceTest {
     @Test
     public void publishEmptyContent(){
         // given
-        RequestNewPost requestNewPost = new RequestNewPost("title", "");
+        RequestNewPost requestNewPost = new RequestNewPost("title", "", "");
 
         // when
         RuntimeException e = assertThrows(RuntimeException.class, () -> postService.publish(requestNewPost, "id"));

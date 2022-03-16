@@ -3,9 +3,11 @@ package com.pythaac.bertie.controller;
 import com.pythaac.bertie.domain.AuthInfo;
 import com.pythaac.bertie.domain.Post;
 import com.pythaac.bertie.dto.RequestNewPost;
+import com.pythaac.bertie.exception.ApiFailedException;
 import com.pythaac.bertie.exception.PostContentIsEmptyException;
 import com.pythaac.bertie.exception.PostNotExistsException;
 import com.pythaac.bertie.exception.PostTitleIsEmptyException;
+import com.pythaac.bertie.service.LanguageService;
 import com.pythaac.bertie.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +23,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class PostController {
     private final PostService postService;
+    private final LanguageService languageService;
 
     @Autowired
-    public PostController(PostService postService) {
+    public PostController(PostService postService, LanguageService languageService) {
         this.postService = postService;
+        this.languageService = languageService;
     }
 
     @GetMapping("/home")
@@ -56,8 +60,11 @@ public class PostController {
             return "login";
         }
         try {
+            languageService.translate(requestNewPost);
             postService.publish(requestNewPost, authInfo.getId());
         } catch(PostTitleIsEmptyException | PostContentIsEmptyException e){
+            return "redirect:/home";
+        } catch(ApiFailedException | NullPointerException e){
             return "redirect:/home";
         }
         return "redirect:/home";

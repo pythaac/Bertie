@@ -18,4 +18,12 @@ CREATE TABLE IF NOT EXISTS post
     time        DATETIME,
 
     PRIMARY KEY (num)
-)
+);
+
+CREATE TABLE IF NOT EXISTS naver_api_info
+(
+    client_id       VARCHAR(128),
+    client_secret   VARCHAR(128),
+
+    PRIMARY KEY (client_id)
+);

@@ -3,10 +3,12 @@ package com.pythaac.bertie.dto;
 public class RequestNewPost {
     private String title;
     private String content;
+    private String lang;
 
-    public RequestNewPost(String title, String content) {
+    public RequestNewPost(String title, String content, String lang) {
         this.title = title;
         this.content = content;
+        this.lang = lang;
     }
 
     public RequestNewPost() {
@@ -26,5 +28,13 @@ public class RequestNewPost {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 }
