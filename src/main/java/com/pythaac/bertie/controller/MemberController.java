@@ -2,6 +2,8 @@ package com.pythaac.bertie.controller;
 
 import com.pythaac.bertie.dto.RequestMemberJoin;
 import com.pythaac.bertie.exception.IdAlreadyExistsException;
+import com.pythaac.bertie.exception.InvalidIdException;
+import com.pythaac.bertie.exception.InvalidPasswordException;
 import com.pythaac.bertie.exception.PasswordNotEqualsToConfirmException;
 import com.pythaac.bertie.service.MemberService;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,10 @@ public class MemberController {
             model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
         } catch (IdAlreadyExistsException e){
             model.addAttribute("message", "이미 존재하는 아이디입니다.");
+        } catch (InvalidIdException e){
+            model.addAttribute("message", "아이디를 올바르게 입력하세요.");
+        } catch (InvalidPasswordException e){
+            model.addAttribute("message", "비밀번호를 올바르게 입력하세요.");
         }
         return "login";
     }

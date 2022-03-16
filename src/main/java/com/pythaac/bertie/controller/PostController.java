@@ -84,6 +84,6 @@ public class PostController {
         } catch (PostNotExistsException e){
             return "redirect:/home";
         }
-        return "/readPost";
+        return "readPost";
     }
 }

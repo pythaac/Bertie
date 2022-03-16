@@ -12,6 +12,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 public class LanguageService {
@@ -68,14 +69,17 @@ public class LanguageService {
         // request
         HttpEntity<Object> request = new HttpEntity<>(headers);
 
-        // send
-        ResponseEntity<ResponseLangTranslate> response =
-                restTemplate.postForEntity(url + query, request, ResponseLangTranslate.class);
-
-        // response
-        if(response.getStatusCode() == HttpStatus.BAD_REQUEST)
+        try{
+            // send
+            ResponseEntity<ResponseLangTranslate> response =
+                    restTemplate.postForEntity(url + query, request, ResponseLangTranslate.class);
+            // response
+            return response.getBody().getResult();
+        } catch(HttpClientErrorException e){
             throw new ApiFailedException();
-        return response.getBody().getResult();
+        } catch(NullPointerException e){
+            throw new NullPointerException();
+        }
     }
 
     private boolean checkValidRequest(RequestNewPost requestNewPost){
@@ -104,14 +108,18 @@ public class LanguageService {
         // request
         HttpEntity<Object> request = new HttpEntity<>(headers);
 
-        // send
-        ResponseEntity<ResponseLangDetect> response =
-                restTemplate.postForEntity(url + query, request, ResponseLangDetect.class);
+        try{
+            // send
+            ResponseEntity<ResponseLangDetect> response =
+                    restTemplate.postForEntity(url + query, request, ResponseLangDetect.class);
 
-        // response
-        if(response.getStatusCode() == HttpStatus.BAD_REQUEST)
+            // response
+            return response.getBody().getLangCode();
+        } catch(HttpClientErrorException e){
             throw new ApiFailedException();
-        return response.getBody().getLangCode();
+        } catch(NullPointerException e){
+            throw new NullPointerException();
+        }
     }
 
 //    enum LANG{
