@@ -6,12 +6,16 @@ import com.pythaac.bertie.dto.RequestLogin;
 import com.pythaac.bertie.exception.IdNotExistsException;
 import com.pythaac.bertie.exception.IdPasswordNotMatchedException;
 import com.pythaac.bertie.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class AuthService {
     private final MemberRepository memberRepository;
 
+    @Autowired
     public AuthService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

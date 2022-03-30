@@ -27,21 +27,8 @@ public class SpringConfig {
     }
 
     @Bean
-    public MemberService memberService(){
-        return new MemberService(memberRepository);
-    }
-
-    @Bean
-    public AuthService authService(){
-        return new AuthService(memberRepository);
-    }
-
-    @Bean
     public PostService postService() { return new PostService(postRepository, timeHandler()); }
 
     @Bean
     public BertieTimeHandler timeHandler() { return new Seoul(); }
-
-    @Bean
-    public LanguageService languageService() { return new LanguageService(apiInfoRepository); }
 }

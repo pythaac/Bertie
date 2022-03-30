@@ -7,10 +7,14 @@ import com.pythaac.bertie.exception.InvalidIdException;
 import com.pythaac.bertie.exception.InvalidPasswordException;
 import com.pythaac.bertie.exception.PasswordNotEqualsToConfirmException;
 import com.pythaac.bertie.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
