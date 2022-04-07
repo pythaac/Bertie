@@ -3,10 +3,7 @@ package com.pythaac.bertie.controller;
 import com.pythaac.bertie.domain.AuthInfo;
 import com.pythaac.bertie.domain.Post;
 import com.pythaac.bertie.dto.RequestNewPost;
-import com.pythaac.bertie.exception.ApiFailedException;
-import com.pythaac.bertie.exception.PostContentIsEmptyException;
-import com.pythaac.bertie.exception.PostNotExistsException;
-import com.pythaac.bertie.exception.PostTitleIsEmptyException;
+import com.pythaac.bertie.exception.*;
 import com.pythaac.bertie.service.LanguageService;
 import com.pythaac.bertie.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +61,7 @@ public class PostController {
             postService.publish(requestNewPost, authInfo.getId());
         } catch(PostTitleIsEmptyException | PostContentIsEmptyException e){
             return "redirect:/home";
-        } catch(ApiFailedException | NullPointerException e){
+        } catch(ApiFailedException | NullPointerException | NaverApiInfoNotExistException e){
             return "redirect:/home";
         }
         return "redirect:/home";

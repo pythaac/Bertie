@@ -50,6 +50,8 @@ public class LanguageService {
             throw new ApiFailedException();
         } catch(NullPointerException e){
             throw new NullPointerException();
+        } catch(NaverApiInfoNotExistException e){
+            throw new NaverApiInfoNotExistException();
         }
     }
 
