@@ -22,13 +22,13 @@ Bertie는 Spring/Java 등 학습한 내용을 적용해보기 위해 사용되�
 
 2. 예외 처리
 - 사용자 정의 exception 생성(RuntimeExeption)  
-명료한 Exception 확인 및 처리
+: 명료한 Exception 확인 및 처리
 - 서비스에서 예외 re-throwing, 컨트롤러에서 try-catch  
-컨트롤러에서 예외에 따른 response 처리
+: 컨트롤러에서 예외에 따른 response 처리
 - Optional의 orElseThrow()  
-try-catch를 줄이기 위한 Optinal 활용
+: try-catch를 줄이기 위한 Optinal 활용
 - Objects.requireNonNull(obj.get())  
-obj.get()의 반환 객체가 null이면 NullPointerException  
+: obj.get()의 반환 객체가 null이면 NullPointerException  
 &nbsp;  
 
 3. 테스트 코드
@@ -50,5 +50,5 @@ obj.get()의 반환 객체가 null이면 NullPointerException
 
 6. 세션
 - HttpSession을 이용한 세션 등록  
-사용자 식별 및 로그인 유지를 위한 세션 등록
+: 사용자 식별 및 로그인 유지를 위한 세션 등록
 
