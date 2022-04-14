@@ -1,10 +1,12 @@
 package com.pythaac.bertie;
 
+import com.pythaac.bertie.repository.KakaoApiInfoRepository;
 import com.pythaac.bertie.repository.MemberRepository;
 import com.pythaac.bertie.repository.NaverApiInfoRepository;
 import com.pythaac.bertie.repository.PostRepository;
+import com.pythaac.bertie.service.LangaugeServices.KakaoLanguageService;
 import com.pythaac.bertie.service.LanguageService;
-import com.pythaac.bertie.service.NaverLanguageService;
+import com.pythaac.bertie.service.LangaugeServices.NaverLanguageService;
 import com.pythaac.bertie.service.PostService;
 import com.pythaac.bertie.time.BertieTimeHandler;
 import com.pythaac.bertie.time.Seoul;
@@ -16,13 +18,19 @@ import org.springframework.context.annotation.Configuration;
 public class SpringConfig {
     private final MemberRepository memberRepository;
     private final PostRepository postRepository;
-    private final NaverApiInfoRepository apiInfoRepository;
+    private final NaverApiInfoRepository naverApiInfoRepository;
+    private final KakaoApiInfoRepository kakaoApiInfoRepository;
 
     @Autowired
-    public SpringConfig(MemberRepository memberRepository, PostRepository postRepository, NaverApiInfoRepository apiInfoRepository) {
+    public SpringConfig(
+            MemberRepository memberRepository,
+            PostRepository postRepository,
+            NaverApiInfoRepository naverApiInfoRepository,
+            KakaoApiInfoRepository kakaoApiInfoRepository) {
         this.memberRepository = memberRepository;
         this.postRepository = postRepository;
-        this.apiInfoRepository = apiInfoRepository;
+        this.naverApiInfoRepository = naverApiInfoRepository;
+        this.kakaoApiInfoRepository = kakaoApiInfoRepository;
     }
 
     @Bean
@@ -32,5 +40,5 @@ public class SpringConfig {
     public BertieTimeHandler timeHandler() { return new Seoul(); }
 
     @Bean
-    public LanguageService languageService() { return new NaverLanguageService(apiInfoRepository); }
+    public LanguageService languageService() { return new NaverLanguageService(naverApiInfoRepository); }
 }

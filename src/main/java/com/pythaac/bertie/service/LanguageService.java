@@ -1,12 +1,16 @@
 package com.pythaac.bertie.service;
 
+import com.pythaac.bertie.dto.ModelLangCode;
 import com.pythaac.bertie.dto.RequestNewPost;
 import com.pythaac.bertie.exception.ApiFailedException;
 import com.pythaac.bertie.exception.NaverApiInfoNotExistException;
 
+import java.util.Collection;
+
 public abstract class LanguageService {
     protected abstract String translate(String str, String source, String target);
     protected abstract String detectLang(String str);
+    public abstract Collection<ModelLangCode> getLangCode();
 
     public void translatePost(RequestNewPost requestNewPost){
         if (checkValidRequest(requestNewPost))

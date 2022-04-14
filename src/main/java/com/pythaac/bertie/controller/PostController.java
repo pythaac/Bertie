@@ -4,7 +4,8 @@ import com.pythaac.bertie.domain.AuthInfo;
 import com.pythaac.bertie.domain.Post;
 import com.pythaac.bertie.dto.RequestNewPost;
 import com.pythaac.bertie.exception.*;
-import com.pythaac.bertie.service.NaverLanguageService;
+import com.pythaac.bertie.service.LangaugeServices.NaverLanguageService;
+import com.pythaac.bertie.service.LanguageService;
 import com.pythaac.bertie.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,12 +19,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class PostController {
     private final PostService postService;
-    private final NaverLanguageService naverLanguageService;
+    private final LanguageService languageService;
 
     @Autowired
-    public PostController(PostService postService, NaverLanguageService naverLanguageService) {
+    public PostController(PostService postService, LanguageService languageService) {
         this.postService = postService;
-        this.naverLanguageService = naverLanguageService;
+        this.languageService = languageService;
     }
 
     @GetMapping("/home")
@@ -44,6 +45,7 @@ public class PostController {
             model.addAttribute("message", "세션이 만료되었습니다.");
             return "login";
         }
+        model.addAttribute("langs", languageService.getLangCode());
         return "createPost";
     }
 
@@ -55,7 +57,7 @@ public class PostController {
             return "login";
         }
         try {
-            naverLanguageService.translatePost(requestNewPost);
+            languageService.translatePost(requestNewPost);
             postService.publish(requestNewPost, authInfo.getId());
         } catch(PostTitleIsEmptyException | PostContentIsEmptyException e){
             return "redirect:/home";

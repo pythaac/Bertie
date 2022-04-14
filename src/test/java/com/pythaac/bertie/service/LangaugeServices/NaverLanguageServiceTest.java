@@ -1,6 +1,8 @@
-package com.pythaac.bertie.service;
+package com.pythaac.bertie.service.LangaugeServices;
 
 import com.pythaac.bertie.dto.RequestNewPost;
+import com.pythaac.bertie.repository.NaverApiInfoRepository;
+import com.pythaac.bertie.service.LangaugeServices.NaverLanguageService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,8 +14,8 @@ class NaverLanguageServiceTest {
     private final NaverLanguageService naverLanguageService;
 
     @Autowired
-    public NaverLanguageServiceTest(NaverLanguageService naverLanguageService) {
-        this.naverLanguageService = naverLanguageService;
+    public NaverLanguageServiceTest(NaverApiInfoRepository naverApiInfoRepository) {
+        this.naverLanguageService = new NaverLanguageService(naverApiInfoRepository);
     }
 
     @Test

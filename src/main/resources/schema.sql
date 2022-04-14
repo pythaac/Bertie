@@ -27,3 +27,10 @@ CREATE TABLE IF NOT EXISTS naver_api_info
 
     PRIMARY KEY (client_id)
 );
+
+CREATE TABLE IF NOT EXISTS kakao_api_info
+(
+    rest_api_key       VARCHAR(128),
+
+    PRIMARY KEY (rest_api_key)
+);

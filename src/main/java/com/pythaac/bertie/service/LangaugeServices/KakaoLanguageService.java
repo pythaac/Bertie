@@ -1,30 +1,33 @@
-package com.pythaac.bertie.service;
+package com.pythaac.bertie.service.LangaugeServices;
 
+import com.pythaac.bertie.domain.KakaoApiInfo;
 import com.pythaac.bertie.domain.NaverApiInfo;
+import com.pythaac.bertie.dto.ModelLangCode;
 import com.pythaac.bertie.dto.ResponseNaverLangDetect;
 import com.pythaac.bertie.dto.ResponseNaverLangTranslate;
 import com.pythaac.bertie.exception.ApiFailedException;
+import com.pythaac.bertie.exception.KakaoApiInfoNotExistException;
 import com.pythaac.bertie.exception.NaverApiInfoNotExistException;
+import com.pythaac.bertie.repository.KakaoApiInfoRepository;
 import com.pythaac.bertie.repository.NaverApiInfoRepository;
+import com.pythaac.bertie.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collection;
 import java.util.Objects;
 
-@Service
-public class NaverLanguageService extends LanguageService{
+public class KakaoLanguageService extends LanguageService {
     private final RestTemplate restTemplate;
-    private final NaverApiInfoRepository apiInfoRepository;
+    private final KakaoApiInfoRepository apiInfoRepository;
 
-    @Autowired
-    public NaverLanguageService(NaverApiInfoRepository apiInfoRepository) {
+    public KakaoLanguageService(KakaoApiInfoRepository apiInfoRepository) {
         this.apiInfoRepository = apiInfoRepository;
         RestTemplateBuilder builder = new RestTemplateBuilder();
         this.restTemplate = builder.build();
@@ -35,22 +38,18 @@ public class NaverLanguageService extends LanguageService{
         if (source.equals(target))
             return str;
 
-        String url = "https://openapi.naver.com/v1/papago/n2mt";
-        String query = "?source=" + source +
-                "&target=" + target +
-                "&text=" + str;
+        String url = "https://dapi.kakao.com/v2/translation/translate";
+        String query = "?src_lang=" + source +
+                "&target_lang=" + target +
+                "&query=" + str;
 
-        // Naver API info
-        NaverApiInfo naverApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(NaverApiInfoNotExistException::new);
-        String clientId = naverApiInfo.getClientId();
-        String clientSecret = naverApiInfo.getClientSecret();
+        // Kakao API info
+        KakaoApiInfo kakoApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(KakaoApiInfoNotExistException::new);
+        String authorization = "KakaoAK " + kakoApiInfo.getRest_api_key();
 
         // header
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Type",
-                "application/x-www-form-urlencoded; charset=UTF-8");
-        headers.set("X-Naver-Client-Id", clientId);
-        headers.set("X-Naver-Client-Secret", clientSecret);
+        headers.set("Authorization", authorization);
 
         // request
         HttpEntity<Object> request = new HttpEntity<>(headers);
@@ -70,20 +69,16 @@ public class NaverLanguageService extends LanguageService{
 
     @Override
     protected String detectLang(String str){
-        String url = "https://openapi.naver.com/v1/papago/detectLangs";
+        String url = "https://dapi.kakao.com/v3/translation/language/detect";
         String query = "?query=" + str;
 
-        // Naver API info
-        NaverApiInfo naverApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(NaverApiInfoNotExistException::new);
-        String clientId = naverApiInfo.getClientId();
-        String clientSecret = naverApiInfo.getClientSecret();
+        // Kakao API info
+        KakaoApiInfo kakoApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(KakaoApiInfoNotExistException::new);
+        String authorization = "KakaoAK " + kakoApiInfo.getRest_api_key();
 
         // header
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Type",
-                "application/x-www-form-urlencoded; charset=UTF-8");
-        headers.set("X-Naver-Client-Id", clientId);
-        headers.set("X-Naver-Client-Secret", clientSecret);
+        headers.set("Authorization", authorization);
 
         // request
         HttpEntity<Object> request = new HttpEntity<>(headers);
@@ -102,7 +97,8 @@ public class NaverLanguageService extends LanguageService{
         }
     }
 
-//    enum LANG{
-//        ko, en, ja, zh-CN, zh-TW, vi, id, th, de, ru, es, it, fr
-//    }
+    @Override
+    public Collection<ModelLangCode> getLangCode() {
+        return null;
+    }
 }
