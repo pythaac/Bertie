@@ -52,3 +52,6 @@ Bertie는 Spring/Java 등 학습한 내용을 적용해보기 위해 사용되�
 - HttpSession을 이용한 세션 등록  
 : 사용자 식별 및 로그인 유지를 위한 세션 등록
 
+7. 캐시
+- WebMvcConfigurer를 이용한 캐시 설정  
+: 제한된 시간동안 캐시 사용, 이 후 서버에 재
