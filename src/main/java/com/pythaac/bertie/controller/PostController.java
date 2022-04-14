@@ -4,7 +4,7 @@ import com.pythaac.bertie.domain.AuthInfo;
 import com.pythaac.bertie.domain.Post;
 import com.pythaac.bertie.dto.RequestNewPost;
 import com.pythaac.bertie.exception.*;
-import com.pythaac.bertie.service.LanguageService;
+import com.pythaac.bertie.service.NaverLanguageService;
 import com.pythaac.bertie.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,20 +12,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class PostController {
     private final PostService postService;
-    private final LanguageService languageService;
+    private final NaverLanguageService naverLanguageService;
 
     @Autowired
-    public PostController(PostService postService, LanguageService languageService) {
+    public PostController(PostService postService, NaverLanguageService naverLanguageService) {
         this.postService = postService;
-        this.languageService = languageService;
+        this.naverLanguageService = naverLanguageService;
     }
 
     @GetMapping("/home")
@@ -57,7 +55,7 @@ public class PostController {
             return "login";
         }
         try {
-            languageService.translate(requestNewPost);
+            naverLanguageService.translatePost(requestNewPost);
             postService.publish(requestNewPost, authInfo.getId());
         } catch(PostTitleIsEmptyException | PostContentIsEmptyException e){
             return "redirect:/home";

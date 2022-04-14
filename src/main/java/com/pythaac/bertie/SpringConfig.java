@@ -3,9 +3,8 @@ package com.pythaac.bertie;
 import com.pythaac.bertie.repository.MemberRepository;
 import com.pythaac.bertie.repository.NaverApiInfoRepository;
 import com.pythaac.bertie.repository.PostRepository;
-import com.pythaac.bertie.service.AuthService;
 import com.pythaac.bertie.service.LanguageService;
-import com.pythaac.bertie.service.MemberService;
+import com.pythaac.bertie.service.NaverLanguageService;
 import com.pythaac.bertie.service.PostService;
 import com.pythaac.bertie.time.BertieTimeHandler;
 import com.pythaac.bertie.time.Seoul;
@@ -31,4 +30,7 @@ public class SpringConfig {
 
     @Bean
     public BertieTimeHandler timeHandler() { return new Seoul(); }
+
+    @Bean
+    public LanguageService languageService() { return new NaverLanguageService(apiInfoRepository); }
 }
