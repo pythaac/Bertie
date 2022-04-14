@@ -1,9 +1,8 @@
 package com.pythaac.bertie.service;
 
 import com.pythaac.bertie.domain.NaverApiInfo;
-import com.pythaac.bertie.dto.RequestNewPost;
-import com.pythaac.bertie.dto.ResponseLangDetect;
-import com.pythaac.bertie.dto.ResponseLangTranslate;
+import com.pythaac.bertie.dto.ResponseNaverLangDetect;
+import com.pythaac.bertie.dto.ResponseNaverLangTranslate;
 import com.pythaac.bertie.exception.ApiFailedException;
 import com.pythaac.bertie.exception.NaverApiInfoNotExistException;
 import com.pythaac.bertie.repository.NaverApiInfoRepository;
@@ -58,8 +57,8 @@ public class NaverLanguageService extends LanguageService{
 
         try{
             // send
-            ResponseEntity<ResponseLangTranslate> response =
-                    restTemplate.postForEntity(url + query, request, ResponseLangTranslate.class);
+            ResponseEntity<ResponseNaverLangTranslate> response =
+                    restTemplate.postForEntity(url + query, request, ResponseNaverLangTranslate.class);
             // response
             return Objects.requireNonNull(response.getBody()).getResult();
         } catch(RestClientException e){
@@ -91,8 +90,8 @@ public class NaverLanguageService extends LanguageService{
 
         try{
             // send
-            ResponseEntity<ResponseLangDetect> response =
-                    restTemplate.postForEntity(url + query, request, ResponseLangDetect.class);
+            ResponseEntity<ResponseNaverLangDetect> response =
+                    restTemplate.postForEntity(url + query, request, ResponseNaverLangDetect.class);
 
             // response
             return Objects.requireNonNull(response.getBody()).getLangCode();

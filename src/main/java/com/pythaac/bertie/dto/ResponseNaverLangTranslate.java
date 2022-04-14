@@ -2,7 +2,7 @@ package com.pythaac.bertie.dto;
 
 import java.util.Map;
 
-public class ResponseLangTranslate {
+public class ResponseNaverLangTranslate {
     private Map<String, Object> message;
 
     public String getResult(){

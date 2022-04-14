@@ -1,6 +1,6 @@
 package com.pythaac.bertie.dto;
 
-public class ResponseLangDetect {
+public class ResponseNaverLangDetect {
     private String langCode;
 
     public String getLangCode() {
