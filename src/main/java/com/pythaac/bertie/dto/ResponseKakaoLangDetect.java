@@ -3,27 +3,17 @@ package com.pythaac.bertie.dto;
 import java.util.ArrayList;
 
 public class ResponseKakaoLangDetect {
-    private ArrayList<LangInfo> language_info;
-
-    public ResponseKakaoLangDetect() {
-        language_info = new ArrayList<>();
-    }
-
-    public String getLangCode(){
-        language_info.sort((x, y) -> x.getConfidence().compareTo(y.getConfidence()));
-        return language_info.get(language_info.size()-1).getCode();
-    }
-}
-
-class LangInfo{
     private String code;
     private String name;
     private Double confidence;
 
-    public LangInfo(String code, String name, Double confidence) {
+    public ResponseKakaoLangDetect(String code, String name, Double confidence) {
         this.code = code;
         this.name = name;
         this.confidence = confidence;
+    }
+
+    public ResponseKakaoLangDetect() {
     }
 
     public String getCode() {

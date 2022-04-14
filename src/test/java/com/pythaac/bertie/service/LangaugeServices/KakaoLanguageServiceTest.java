@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -21,11 +22,14 @@ class KakaoLanguageServiceTest {
     public void translate(){
         // given
         RequestNewPost requestNewPost =
-                new RequestNewPost("Title", "Content", "ko");
+                new RequestNewPost("Title", "Content", "kr");
 
         // when
+        kakaoLanguageService.translatePost(requestNewPost);
 
         // then
-
+        System.out.println("Title -> " + requestNewPost.getTitle() + "\nContent -> " + requestNewPost.getContent());
+        assertThat(requestNewPost.getTitle()).isEqualTo("제목");
+        assertThat(requestNewPost.getContent()).isEqualTo("내용물");
     }
 }

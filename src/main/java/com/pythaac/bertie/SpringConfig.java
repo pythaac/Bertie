@@ -40,5 +40,5 @@ public class SpringConfig {
     public BertieTimeHandler timeHandler() { return new Seoul(); }
 
     @Bean
-    public LanguageService languageService() { return new NaverLanguageService(naverApiInfoRepository); }
+    public LanguageService languageService() { return new KakaoLanguageService(kakaoApiInfoRepository); }
 }
