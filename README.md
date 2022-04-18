@@ -39,15 +39,15 @@ Bertie는 Spring/Java 등 학습한 내용을 적용해보기 위해 사용되�
 
 ### Service
 - MemberService#join
-<p align="center"><img src="/image/MemberService#join.png" width="100%"></img></p>  
+<p align="center"><img src="/image/MemberService%23join.png" width="50%"></img></p>  
 - AuthService#authenticate
-<p align="center"><img src="/image/AuthService#authenticate.png" width="100%"></img></p>  
+<p align="center"><img src="/image/AuthService%23authenticate.png" width="50%"></img></p>  
 - LanguageService#translatePost
-<p align="center"><img src="/image/LanguageService#translatePost.png" width="100%"></img></p>  
+<p align="center"><img src="/image/LanguageService%23translatePost.png" width="70%"></img></p>  
 - PostService#publish
-<p align="center"><img src="/image/PostService#publish.png" width="100%"></img></p>  
+<p align="center"><img src="/image/PostService%23publish.png" width="50%"></img></p>  
 - PostService#readPost
-<p align="center"><img src="/image/PostService#readPost.png" width="100%"></img></p>  
+<p align="center"><img src="/image/PostService%23readPost.png" width="50%"></img></p>  
 &nbsp;  
 
 ## 학습내용
