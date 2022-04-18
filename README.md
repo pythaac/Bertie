@@ -2,42 +2,45 @@
 [학습용] 자동 번역 게시판  
 &nbsp;  
 
-## 요약
+## 🚲요약
 Bertie는 Spring/Java 등 학습한 내용을 적용해보기 위해 사용되는 게시판입니다.
 학습한 내용을 이 프로젝트에 적용하고, 수정하고, 정리합니다.  
 &nbsp;  
 
-## 기능
+## 🔧기능
 - 회원가입
 - 로그인
 - 글쓰기(번역 기능)
 - 글읽기  
 &nbsp;  
 
-## 상세설명
-### View
+## 🧾상세설명
+### 📌View
 - login
 - createMember
 - home
 - readPost
 - createPost
 <p align="center"><img src="/image/UserView.png" width="70%"></img></p>  
-<p aling="right">
+<p align="left">
   <img src="/image/userView1.png" width="15%"></img>
   <img src="/image/userView2.png" width="15%"></img>
   <img src="/image/userView3.png" width="15%"></img>
   <img src="/image/userView4.png" width="15%"></img>
   <img src="/image/userView5.png" width="15%"></img>
 </p>  
+login / createMember / home / createPost / readPost  
+&nbsp;  
 
-### Function
+### 📌Function
 - 회원가입 (Join member)
 - 로그인 (Login)
 - 글쓰기 (Write post)
 - 글읽기 (Read post)  
 <p align="center"><img src="/image/Function.png" width="100%"></img></p>  
+&nbsp;  
 
-### Service
+### 📌Service
 - MemberService#join
 <p align="center"><img src="/image/MemberService%23join.png" width="50%"></img></p>  
 - AuthService#authenticate
@@ -50,7 +53,7 @@ Bertie는 Spring/Java 등 학습한 내용을 적용해보기 위해 사용되�
 <p align="center"><img src="/image/PostService%23readPost.png" width="50%"></img></p>  
 &nbsp;  
 
-## 학습내용
+## 🎓학습내용
 1. 패키지 구성
 - controller / repository / service / domain / repository 를 나누어 정리  
 &nbsp;  
