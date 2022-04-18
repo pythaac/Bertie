@@ -111,7 +111,7 @@ public class KakaoLanguageService extends LanguageService {
 
             // response
             return Objects.requireNonNull(response.getBody()).getLangCode();
-        } catch(HttpClientErrorException e){
+        } catch(RestClientException e){
             throw new ApiFailedException();
         } catch(NullPointerException e){
             throw new NullPointerException();
