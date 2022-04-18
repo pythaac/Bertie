@@ -10,9 +10,44 @@ Bertie는 Spring/Java 등 학습한 내용을 적용해보기 위해 사용되�
 ## 기능
 - 회원가입
 - 로그인
-- 글쓰기
-- 글읽기
-- 번역된 글로 작성하기  
+- 글쓰기(번역 기능)
+- 글읽기  
+&nbsp;  
+
+## 상세설명
+### View
+- login
+- createMember
+- home
+- readPost
+- createPost
+<p align="center"><img src="/image/UserView.png" width="70%"></img></p>  
+<p aling="right">
+  <img src="/image/userView1.png" width="15%"></img>
+  <img src="/image/userView2.png" width="15%"></img>
+  <img src="/image/userView3.png" width="15%"></img>
+  <img src="/image/userView4.png" width="15%"></img>
+  <img src="/image/userView5.png" width="15%"></img>
+</p>  
+
+### Function
+- 회원가입 (Join member)
+- 로그인 (Login)
+- 글쓰기 (Write post)
+- 글읽기 (Read post)  
+<p align="center"><img src="/image/Function.png" width="100%"></img></p>  
+
+### Service
+- MemberService#join
+<p align="center"><img src="/image/MemberService#join.png" width="100%"></img></p>  
+- AuthService#authenticate
+<p align="center"><img src="/image/AuthService#authenticate.png" width="100%"></img></p>  
+- LanguageService#translatePost
+<p align="center"><img src="/image/LanguageService#translatePost.png" width="100%"></img></p>  
+- PostService#publish
+<p align="center"><img src="/image/PostService#publish.png" width="100%"></img></p>  
+- PostService#readPost
+<p align="center"><img src="/image/PostService#readPost.png" width="100%"></img></p>  
 &nbsp;  
 
 ## 학습내용
