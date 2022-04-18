@@ -61,7 +61,7 @@ public class PostController {
             postService.publish(requestNewPost, authInfo.getId());
         } catch(PostTitleIsEmptyException | PostContentIsEmptyException e){
             return "redirect:/home";
-        } catch(ApiFailedException | NullPointerException | NaverApiInfoNotExistException e){
+        } catch(ApiFailedException | NullPointerException | ApiInfoNotExistException e){
             return "redirect:/home";
         }
         return "redirect:/home";

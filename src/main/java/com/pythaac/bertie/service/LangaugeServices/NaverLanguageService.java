@@ -5,15 +5,13 @@ import com.pythaac.bertie.dto.ModelLangCode;
 import com.pythaac.bertie.dto.ResponseNaverLangDetect;
 import com.pythaac.bertie.dto.ResponseNaverLangTranslate;
 import com.pythaac.bertie.exception.ApiFailedException;
-import com.pythaac.bertie.exception.NaverApiInfoNotExistException;
+import com.pythaac.bertie.exception.ApiInfoNotExistException;
 import com.pythaac.bertie.repository.NaverApiInfoRepository;
 import com.pythaac.bertie.service.LanguageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -62,7 +60,7 @@ public class NaverLanguageService extends LanguageService {
                 "&text=" + str;
 
         // Naver API info
-        NaverApiInfo naverApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(NaverApiInfoNotExistException::new);
+        NaverApiInfo naverApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(ApiInfoNotExistException::new);
         String clientId = naverApiInfo.getClientId();
         String clientSecret = naverApiInfo.getClientSecret();
 
@@ -95,7 +93,7 @@ public class NaverLanguageService extends LanguageService {
         String query = "?query=" + str;
 
         // Naver API info
-        NaverApiInfo naverApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(NaverApiInfoNotExistException::new);
+        NaverApiInfo naverApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(ApiInfoNotExistException::new);
         String clientId = naverApiInfo.getClientId();
         String clientSecret = naverApiInfo.getClientSecret();
 

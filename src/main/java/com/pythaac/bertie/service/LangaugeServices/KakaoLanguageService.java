@@ -1,15 +1,11 @@
 package com.pythaac.bertie.service.LangaugeServices;
 
 import com.pythaac.bertie.domain.KakaoApiInfo;
-import com.pythaac.bertie.domain.NaverApiInfo;
 import com.pythaac.bertie.dto.*;
 import com.pythaac.bertie.exception.ApiFailedException;
-import com.pythaac.bertie.exception.KakaoApiInfoNotExistException;
-import com.pythaac.bertie.exception.NaverApiInfoNotExistException;
+import com.pythaac.bertie.exception.ApiInfoNotExistException;
 import com.pythaac.bertie.repository.KakaoApiInfoRepository;
-import com.pythaac.bertie.repository.NaverApiInfoRepository;
 import com.pythaac.bertie.service.LanguageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -69,7 +65,7 @@ public class KakaoLanguageService extends LanguageService {
                 "&query=" + str;
 
         // Kakao API info
-        KakaoApiInfo kakoApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(KakaoApiInfoNotExistException::new);
+        KakaoApiInfo kakoApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(ApiInfoNotExistException::new);
         String authorization = "KakaoAK " + kakoApiInfo.getRest_api_key();
 
         // header
@@ -98,7 +94,7 @@ public class KakaoLanguageService extends LanguageService {
         String query = "?query=" + str;
 
         // Kakao API info
-        KakaoApiInfo kakoApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(KakaoApiInfoNotExistException::new);
+        KakaoApiInfo kakoApiInfo = apiInfoRepository.findAll().stream().findFirst().orElseThrow(ApiInfoNotExistException::new);
         String authorization = "KakaoAK " + kakoApiInfo.getRest_api_key();
 
         // header

@@ -3,7 +3,7 @@ package com.pythaac.bertie.service;
 import com.pythaac.bertie.dto.ModelLangCode;
 import com.pythaac.bertie.dto.RequestNewPost;
 import com.pythaac.bertie.exception.ApiFailedException;
-import com.pythaac.bertie.exception.NaverApiInfoNotExistException;
+import com.pythaac.bertie.exception.ApiInfoNotExistException;
 
 import java.util.Collection;
 
@@ -31,8 +31,8 @@ public abstract class LanguageService {
             throw new ApiFailedException();
         } catch(NullPointerException e){
             throw new NullPointerException();
-        } catch(NaverApiInfoNotExistException e){
-            throw new NaverApiInfoNotExistException();
+        } catch(ApiInfoNotExistException e){
+            throw new ApiInfoNotExistException();
         }
     }
 
