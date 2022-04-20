@@ -93,4 +93,4 @@ login / createMember / home / createPost / readPost
 
 7. 캐시
 - WebMvcConfigurer를 이용한 캐시 설정  
-: 제한된 시간동안 캐시 사용, 이 후 서버에 재
+: 제한된 시간동안 캐시 사용, 이 후 서버에 재요청
